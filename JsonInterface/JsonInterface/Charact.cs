@@ -16,11 +16,8 @@ namespace JsonInterface
         public IMatch Match(string text)
         {
             return string.IsNullOrEmpty(text) || text[0] != pattern
-               ? (IMatch) new FailedMatch(text)
+               ? (IMatch)new FailedMatch(text)
                : new SuccessMatch(text.Substring(1));
         }
-
-        
     }
-       
 }

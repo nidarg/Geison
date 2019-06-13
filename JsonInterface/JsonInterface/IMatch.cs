@@ -7,6 +7,7 @@ namespace JsonInterface
     public interface IMatch
     {
          bool Success();
-        string RemainingText();
+
+         string RemainingText();
     }
 }

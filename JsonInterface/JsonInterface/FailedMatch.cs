@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JsonInterface
 {
-    public class FailedMatch:IMatch
+    public class FailedMatch : IMatch
     {
         readonly string text;
 
@@ -12,6 +12,7 @@ namespace JsonInterface
         {
             this.text = text;
         }
+
         public string RemainingText()
         {
             return text;
@@ -21,6 +22,5 @@ namespace JsonInterface
         {
             return false;
         }
-
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JsonInterface
 {
-    public class OneOrMore:IPattern
+    public class OneOrMore : IPattern
     {
         readonly IPattern pattern;
 
@@ -19,12 +19,13 @@ namespace JsonInterface
             var match = pattern.Match(text);
             while (match.Success())
             {
-
                 match = pattern.Match(match.RemainingText());
                 if (!match.Success())
+                {
                     return new SuccessMatch(match.RemainingText());
-
+                }
             }
+
             return new FailedMatch(textCopy);
         }
     }

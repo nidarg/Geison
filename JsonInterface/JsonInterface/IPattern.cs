@@ -7,6 +7,5 @@ namespace JsonInterface
     public interface IPattern
     {
         IMatch Match(string text);
-
     }
 }

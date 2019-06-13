@@ -9,14 +9,11 @@ namespace JsonInterface
         private readonly char start;
         private readonly char end;
 
-
         public Ranges(char start, char end)
         {
             this.start = start;
             this.end = end;
-
         }
-
 
         public IMatch Match(string text)
         {

@@ -17,7 +17,7 @@ namespace JsonInterfaceTest
 
         public void TestOptionalCharSuccess(string text, string remainingText)
         {
-            var optionalChar = new Optional(new Charact('a'));
+            var optionalChar = new Optionals(new Charact('a'));
 
             var matchChar = optionalChar.Match(text);
 
@@ -37,7 +37,7 @@ namespace JsonInterfaceTest
         public void TestOptionalRangeSuccess(string text, string remainingText)
         {
 
-            var optionalRange = new Optional(new Ranges('0', '9'));
+            var optionalRange = new Optionals(new Ranges('0', '9'));
 
             var matchRange = optionalRange.Match(text);
             Assert.True(matchRange.Success());
