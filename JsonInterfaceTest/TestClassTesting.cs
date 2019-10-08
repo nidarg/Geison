@@ -15,7 +15,7 @@ namespace JsonInterfaceTest
 
         public void TestClassSuccess(string prefix, string text, string remainingText)
         {
-            var e = new Text(prefix);
+            var e = new Texts(prefix);
             var match = e.Match(text);
             Assert.True(match.Success());
             Assert.Equal(remainingText, match.RemainingText());
@@ -29,7 +29,7 @@ namespace JsonInterfaceTest
 
         public void TestClassFail(string prefix, string text, string remainingText)
         {
-            var e = new Text(prefix);
+            var e = new Texts(prefix);
             var match = e.Match(text);
             Assert.False(match.Success());
             Assert.Equal(remainingText, match.RemainingText());

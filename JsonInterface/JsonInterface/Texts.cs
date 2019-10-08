@@ -4,11 +4,11 @@ using System.Text;
 
 namespace JsonInterface
 {
-    public class Text : IPattern
+    public class Texts : IPattern
     {
         readonly string prefix;
 
-        public Text(string prefix)
+        public Texts(string prefix)
         {
             this.prefix = prefix;
         }
