@@ -10,7 +10,9 @@ namespace JsonInterfaceTest
     {
         [Theory]
         [InlineData("455020", "")]
-        public void TestPositiveNumberSuccess(string text, string remainingText)
+        [InlineData("0", "")]
+        [InlineData("020", "20")]
+        public void TestNaturalNumberSuccess(string text, string remainingText)
         {
             IMatch matchNumber = new Numb().Match(text);
             //Assert.True(matchNumber.Success());
@@ -19,7 +21,12 @@ namespace JsonInterfaceTest
 
         [Theory]
         [InlineData("-455020", "")]
-        public void TestNegativeNumberSuccess(string text, string remainingText)
+        [InlineData("0", "")]
+        [InlineData("020", "20")]
+        [InlineData("27845", "")]
+        [InlineData("200", "")]
+        [InlineData("-0", "-0")]
+        public void TestIntegerNumberSuccess(string text, string remainingText)
         {
             IMatch matchNumber = new Numb().Match(text);
             // Assert.True(matchNumber.Success());
@@ -29,7 +36,10 @@ namespace JsonInterfaceTest
         [InlineData("-1.0203", "")]
         [InlineData("354.232", "")]
         [InlineData("0.0678", "")]
-        public void TestPositiveNegativeRealNumberSuccess(string text, string remainingText)
+        [InlineData("020", "20")]
+        [InlineData("-0.20", "")]
+        [InlineData("-0.020", "")]
+        public void TestRealNumberSuccess(string text, string remainingText)
         {
             IMatch matchNumber = new Numb().Match(text);
             //Assert.True(matchNumber.Success());
