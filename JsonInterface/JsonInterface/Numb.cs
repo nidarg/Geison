@@ -15,53 +15,21 @@ namespace JsonInterface
             var minus = new Charact('-');
             var zero = new Charact('0');
             var digits = new OneOrMore(new Ranges('1', '9'));
-            var naturalNumbers = new OneOrMore(new Sequance(digits, new Optionals(new Many(zero))));
-
-            // var integerNumbers = new Choices(
-            //    zero,
-#pragma warning disable S125 // Sections of code should not be commented out
-
-                            // new Sequance(new Optionals(minus), naturalNumbers));
-                            // var allReals = new Choices(
-                            //    new Texts("-0"),
-                            //    integerNumbers);
-                            // var realNumbers = new Choices(
-                            //    new Sequance(
-                            //        new Optionals(minus),
-                            //        zero,
-                            //        dot,
-                            //        allDigits),
-                            //    zero,
-                            //    new Sequance(
-                            //        new Optionals(minus),
-                            //        naturalNumbers,
-                            //        new Optionals(dot),
-                            //        new Optionals(allDigits)));
+            var naturalNumbers = new Choices(zero, allDigits);
+            var integerNumbers = new Sequance(new Optionals(minus), naturalNumbers);
+            var fractionalPart = new Sequance(
+                dot,
+                allDigits);
             var exponentialOption = new Any("eE");
-#pragma warning restore S125 // Sections of code should not be commented out
             var optionalSign = new Any("+-");
-
-            var exponentialNum = new Choices(
-                new Sequance(
-                    new Optionals(minus),
-                    zero,
-                    dot,
-                    allDigits,
-                    new Optionals(exponentialOption),
-                    new Optionals(optionalSign),
-                    new Optionals(digits)),
-                zero,
-                new Sequance(
-                    new Optionals(minus),
-                    naturalNumbers,
-                    new Optionals(dot),
-                    new Optionals(allDigits),
-                    new Optionals(exponentialOption),
-                    new Optionals(optionalSign),
-                    new Optionals(digits)));
-#pragma warning disable RCS1124FadeOut // Inline local variable.
-            pattern = exponentialNum;
-#pragma warning restore RCS1124FadeOut // Inline local variable.
+            var exponentialPart = new Sequance(
+                exponentialOption,
+                optionalSign,
+                allDigits);
+            pattern = new Sequance(
+                integerNumbers,
+                new Optionals(fractionalPart),
+                new Optionals(exponentialPart));
         }
 
         public IMatch Match(string text) => pattern.Match(text);

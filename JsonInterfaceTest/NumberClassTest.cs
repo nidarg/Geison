@@ -25,7 +25,7 @@ namespace JsonInterfaceTest
         [InlineData("020", "20")]
         [InlineData("27845", "")]
         [InlineData("200", "")]
-        [InlineData("-0", "-0")]
+        [InlineData("-0", "")]
         public void TestIntegerNumberSuccess(string text, string remainingText)
         {
             IMatch matchNumber = new Numb().Match(text);
